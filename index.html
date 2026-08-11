@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Emy 🎂</title>
+<audio id="birthdaySong" src="birthday.mp3"></audio>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0; min-height:100vh; overflow-x:hidden;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  background:linear-gradient(135deg,#ffe4ec,#e9ddff,#dff7ff);
+  color:#4d3658;
+}
+.card{
+  width:min(92%,680px); margin:55px auto; padding:35px 25px 45px;
+  text-align:center; border-radius:30px;
+  background:rgba(255,255,255,.78); backdrop-filter:blur(10px);
+  box-shadow:0 20px 60px rgba(90,60,100,.18);
+  position:relative; z-index:2;
+}
+.badge{font-size:16px; letter-spacing:2px; text-transform:uppercase; opacity:.7}
+h1{font-size:clamp(42px,9vw,72px); margin:8px 0; color:#d95788}
+h2{font-size:25px; margin:0 0 18px}
+.message{font-size:18px; line-height:1.7; margin:20px auto; max-width:540px}
+.cat{
+  width:min(90%,430px); height:300px; object-fit:cover;
+  border-radius:25px; box-shadow:0 12px 30px rgba(70,40,80,.2);
+  border:6px solid white;
+}
+button{
+  border:0; padding:15px 28px; border-radius:999px; cursor:pointer;
+  font-size:17px; font-weight:bold; color:white;
+  background:linear-gradient(135deg,#ef6c9c,#a878e8);
+  box-shadow:0 8px 20px rgba(190,90,150,.3);
+  transition:.2s;
+}
+button:hover{transform:translateY(-3px) scale(1.02)}
+#surprise{
+  display:none; margin-top:25px; padding:20px;
+  border-radius:20px; background:#fff7fb;
+  animation:pop .5s ease;
+}
+#surprise.show{display:block}
+.small{font-size:14px; opacity:.65; margin-top:25px}
+.balloon{
+  position:fixed; bottom:-120px; width:55px; height:70px;
+  border-radius:50% 50% 45% 45%; z-index:10; pointer-events:none;
+  animation:floatUp 5s linear forwards;
+}
+.balloon:after{
+  content:""; position:absolute; width:1px; height:65px;
+  background:#777; left:50%; top:68px;
+}
+.confetti{
+  position:fixed; top:-20px; width:9px; height:15px; z-index:20;
+  pointer-events:none; animation:fall 3.2s linear forwards;
+}
+@keyframes floatUp{to{transform:translateY(-120vh) rotate(360deg);opacity:0}}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
+@keyframes pop{0%{transform:scale(.7);opacity:0}100%{transform:scale(1);opacity:1}}
+</style>
+</head>
+<body>
+
+<main class="card">
+  <div class="badge">A little birthday wish for</div>
+  <h1>Emy!!! 🎂</h1>
+  <h2>Happy Birthday, Sis! 💕</h2>
+
+  <img class="cat"
+       src="https://heathertrefusisart.com/cdn/shop/files/GC252_Snowboarding_birthday_card_2.jpg?v=1764237651&width=713"
+       alt="Cute cats celebrating a birthday">
+
+  <p class="message">
+    Happy Birthday, Emyyy! 🥳💖<br>
+    Wishing you lots of happiness, good health, beautiful memories,
+    and everything you've been wishing for. May your day be filled
+    with laughter, love, cake, and plenty of cute moments! 🐱🎈
+    <br><br>
+    Have an amazing birthday, sis! Love you! ❤️
+  </p>
+
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+    <button id="surpriseBtn">🎈 Surprise Balloon! 🎈</button>
+    <button id="giftBtn">🎁 Mystery Gift 🎁</button>
+  </div>
+
+  <div id="surprise">
+    <h2>🎉 SURPRISE, EMY?! 🎉</h2>
+    <p>May all your dreams come true! Keep smiling and enjoy your special day! 💗</p>
+  </div>
+
+  <div id="giftBox" style="display:none;margin-top:25px;padding:22px;border-radius:20px;background:#fff7fb;">
+    <h2>🎁 Mystery Gift</h2>
+    <p>Enter the secret password to unlock your gift: Hint (family)</p>
+    <input id="passwordInput" type="password" placeholder="Enter password" style="padding:12px 15px;border:2px solid #e7c9dc;border-radius:12px;font-size:16px;width:220px;text-align:center;">
+    <button id="unlockBtn" style="margin-top:12px;">🔐 Unlock Gift</button>
+    <p id="passwordMessage" style="font-weight:bold;"></p>
+    <video id="giftVideo" controls playsinline style="display:none;width:min(100%,520px);border-radius:18px;margin-top:15px;"></video>
+  </div>
+
+  <p class="small">🎵 Tap the surprise button to start a gentle birthday melody.</p>
+</main>
+
+<script>
+let audioCtx;
+
+function playBirthdayTune(){
+  const AudioContext = window.AudioContext || window.webkitAudioContext;
+  if(!AudioContext) return;
+  if(!audioCtx) audioCtx = new AudioContext();
+  if(audioCtx.state === "suspended") audioCtx.resume();
+
+  const notes={C4:261.63,D4:293.66,E4:329.63,F4:349.23,G4:392.00,A4:440.00,B4:493.88};
+  const melody=[["G4",.35],["G4",.35],["A4",.55],["G4",.55],["C4",.55],["B4",.9],["G4",.35],["G4",.35],["A4",.55],["G4",.55],["D4",.55],["C4",.9],["G4",.35],["G4",.35],["G4",.55],["E4",.55],["C4",.55],["B4",.55],["A4",.9]];
+  let t=audioCtx.currentTime+0.05;
+  melody.forEach(([n,d])=>{
+    const o=audioCtx.createOscillator(),g=audioCtx.createGain();
+    o.type="sine"; o.frequency.value=notes[n];
+    g.gain.setValueAtTime(.001,t);
+    g.gain.linearRampToValueAtTime(.12,t+.03);
+    g.gain.exponentialRampToValueAtTime(.001,t+d-.03);
+    o.connect(g).connect(audioCtx.destination); o.start(t); o.stop(t+d); t+=d;
+  });
+}
+
+function burst(){
+  const colors=["#ff7aa8","#9d7be8","#ffd166","#6ed6e8","#8bd17c"];
+  for(let i=0;i<28;i++){const b=document.createElement("div");b.className="balloon";b.style.left=Math.random()*100+"vw";b.style.background=colors[Math.floor(Math.random()*colors.length)];b.style.animationDelay=Math.random()*.8+"s";document.body.appendChild(b);setTimeout(()=>b.remove(),6500);}
+  for(let i=0;i<90;i++){const c=document.createElement("div");c.className="confetti";c.style.left=Math.random()*100+"vw";c.style.background=colors[Math.floor(Math.random()*colors.length)];c.style.animationDelay=Math.random()*1.2+"s";document.body.appendChild(c);setTimeout(()=>c.remove(),4500);}
+}
+
+document.getElementById("surpriseBtn").addEventListener("click",()=>{
+  document.getElementById("birthdaySong").play();
+  document.getElementById("surprise").classList.add("show"); playBirthdayTune(); burst();
+  document.getElementById("surpriseBtn").textContent="🎉 Happy Birthday, Emy$ 🎉";
+});
+
+document.getElementById("giftBtn").addEventListener("click",()=>{document.getElementById("giftBox").style.display="block";document.getElementById("passwordInput").focus();});
+document.getElementById("unlockBtn").addEventListener("click",unlockGift);
+document.getElementById("passwordInput").addEventListener("keydown",e=>{if(e.key==="Enter")unlockGift();});
+
+function unlockGift(){
+  const password=document.getElementById("passwordInput").value.trim().toUpperCase();
+  const msg=document.getElementById("passwordMessage"), video=document.getElementById("giftVideo");
+  if(password==="EMY"){
+    msg.textContent="🎉 Correct! Your mystery gift is unlocked!"; msg.style.color="#4b9b62"; video.src="cat.mp4";
+  }else{
+    msg.textContent="❌ Wrong password! Try again!"; msg.style.color="#d95757"; video.src="try-again.mp4";
+  }
+  video.style.display="block"; video.load(); video.play().catch(()=>{});
+}
+</script>
+</body>
+</html>
