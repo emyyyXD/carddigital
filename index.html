@@ -146,9 +146,9 @@ function unlockGift(){
   const password=document.getElementById("passwordInput").value.trim().toUpperCase();
   const msg=document.getElementById("passwordMessage"), video=document.getElementById("giftVideo");
   if(password==="KHAN"){
-    msg.textContent="🎉 Correct! Your mystery gift is unlocked!"; msg.style.color="#4b9b62"; video.src="cat.mp4";
+    msg.textContent="🎉 YEAY!?! EYYYY DAH LAA! HAHAHAHA :) 🎉"; msg.style.color="#4b9b62"; video.src="cat.mp4";
   }else{
-    msg.textContent="❌ Wrong password! Try again!"; msg.style.color="#d95757"; video.src="try-again.mp4";
+    msg.textContent="❌ BASO NATEY Ni! Try again!"; msg.style.color="#d95757"; video.src="try-again.mp4";
   }
   video.style.display="block"; video.load(); video.play().catch(()=>{});
 }
