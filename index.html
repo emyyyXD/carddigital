@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Emy 🎂</title>
+<title>Happy Birthday QIS 🎂</title>
 <audio id="birthdaySong" src="birthday.mp3"></audio>
 <style>
 *{box-sizing:border-box}
@@ -66,7 +66,7 @@ button:hover{transform:translateY(-3px) scale(1.02)}
 
 <main class="card">
   <div class="badge">A little birthday wish for</div>
-  <h1>Emy!!! 🎂</h1>
+  <h1>Qistyna!!! 🎂</h1>
   <h2>Happy Birthday, Sis! 💕</h2>
 
   <img class="cat"
@@ -74,10 +74,10 @@ button:hover{transform:translateY(-3px) scale(1.02)}
        alt="Cute cats celebrating a birthday">
 
   <p class="message">
-    Happy Birthday, Emyyy! 🥳💖<br>
+    Happy Birthday, Qisludin! 🥳💖<br>
     Wishing you lots of happiness, good health, beautiful memories,
     and everything you've been wishing for. May your day be filled
-    with laughter, love, cake, and plenty of cute moments! 🐱🎈
+    with laughter, love, friends, and plenty of adrenaline moments! 🐱🎈
     <br><br>
     Have an amazing birthday, sis! Love you! ❤️
   </p>
@@ -88,7 +88,7 @@ button:hover{transform:translateY(-3px) scale(1.02)}
   </div>
 
   <div id="surprise">
-    <h2>🎉 SURPRISE, EMY?! 🎉</h2>
+    <h2>🎉 SURPRISE, QISSY?! 🎉</h2>
     <p>May all your dreams come true! Keep smiling and enjoy your special day! 💗</p>
   </div>
 
@@ -135,7 +135,7 @@ function burst(){
 document.getElementById("surpriseBtn").addEventListener("click",()=>{
   document.getElementById("birthdaySong").play();
   document.getElementById("surprise").classList.add("show"); playBirthdayTune(); burst();
-  document.getElementById("surpriseBtn").textContent="🎉 Happy Birthday, Emy$ 🎉";
+  document.getElementById("surpriseBtn").textContent="🎉 Happy Birthday, Tyna 🎉";
 });
 
 document.getElementById("giftBtn").addEventListener("click",()=>{document.getElementById("giftBox").style.display="block";document.getElementById("passwordInput").focus();});
@@ -145,7 +145,7 @@ document.getElementById("passwordInput").addEventListener("keydown",e=>{if(e.key
 function unlockGift(){
   const password=document.getElementById("passwordInput").value.trim().toUpperCase();
   const msg=document.getElementById("passwordMessage"), video=document.getElementById("giftVideo");
-  if(password==="EMY"){
+  if(password==="KHAN"){
     msg.textContent="🎉 Correct! Your mystery gift is unlocked!"; msg.style.color="#4b9b62"; video.src="cat.mp4";
   }else{
     msg.textContent="❌ Wrong password! Try again!"; msg.style.color="#d95757"; video.src="try-again.mp4";
