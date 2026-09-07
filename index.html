@@ -151,6 +151,8 @@ function unlockGift(){
   const msg=document.getElementById("passwordMessage"), video=document.getElementById("giftVideo");
   if(password==="KHAN"){
     msg.textContent="🎉 YEAY!?! EYYYY DAH LAA! HAHAHAHA :) 🎉"; msg.style.color="#4b9b62"; video.src="cat.mp4";
+  }else if(password==="EMY"){
+    msg.textContent="✨ SPECIAL SECRET UNLOCKED! Here is Emy's video! 🎬✨"; msg.style.color="#a878e8"; video.src="anothercat.mp4";
   }else{
     msg.textContent="❌ BASO NATEY Ni! Try again!"; msg.style.color="#d95757"; video.src="try-again.mp4";
   }
