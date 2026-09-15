@@ -66,7 +66,7 @@ button:hover{transform:translateY(-3px) scale(1.02)}
 
 <main class="card">
   <div class="badge">A little birthday wish for</div>
-  <h1>Qistyna!!! 🎂</h1>
+  <h1>Qistina!!! 🎂</h1>
   <h2>Happy Birthday, Sis! 💕</h2>
 
   <img class="cat"
@@ -136,6 +136,57 @@ function burst(){
   for(let i=0;i<90;i++){const c=document.createElement("div");c.className="confetti";c.style.left=Math.random()*100+"vw";c.style.background=colors[Math.floor(Math.random()*colors.length)];c.style.animationDelay=Math.random()*1.2+"s";document.body.appendChild(c);setTimeout(()=>c.remove(),4500);}
 }
 
+// Global Slideshow Variables
+let slideIndex = 0;
+let slideTimer = null;
+const images = ["letter.png", "flower.png", "c.png"]; 
+
+function startSlideShow() {
+  const slideImg = document.getElementById("slideImg");
+  const video = document.getElementById("giftVideo");
+  if (!slideImg) return;
+  
+  // Pause and hide video completely
+  video.pause();
+  video.style.display = "none";
+
+  // Show image container
+  slideImg.style.display = "block";
+  slideImg.src = images[0];
+  
+  clearInterval(slideTimer);
+  slideTimer = setInterval(() => {
+    slideIndex = (slideIndex + 1) % images.length;
+    slideImg.src = images[slideIndex];
+  }, 3000); 
+}
+
+function showVideo(videoFile) {
+  const video = document.getElementById("giftVideo");
+
+  // Stop slideshow
+  clearInterval(slideTimer);
+  slideTimer = null;
+
+  // Hide slideshow
+  const slideImg = document.getElementById("slideImg");
+  if (slideImg) {
+    slideImg.style.display = "none";
+    slideImg.src = "";
+  }
+
+  // Set and show video
+  video.pause();
+  video.src = videoFile;
+  video.style.display = "block";
+  video.load();
+
+  // Try to play
+  video.play().catch(() => {
+    // Browser may require user to press Play
+  });
+}
+  
 document.getElementById("surpriseBtn").addEventListener("click",()=>{
   document.getElementById("birthdaySong").play();
   document.getElementById("surprise").classList.add("show"); playBirthdayTune(); burst();
@@ -148,23 +199,23 @@ document.getElementById("passwordInput").addEventListener("keydown",e=>{if(e.key
 
 function unlockGift(){
   const password=document.getElementById("passwordInput").value.trim().toUpperCase();
-  const msg=document.getElementById("passwordMessage"), video=document.getElementById("giftVideo");
+  const msg=document.getElementById("passwordMessage"); //video=document.getElementById("giftVideo");
   if(password==="KHAN"){
-    msg.textContent="🎉 YEAY!?! EYYYY DAH LAA! HAHAHAHA :) 🎉"; msg.style.color="#4b9b62"; video.src="cat.mp4";
+    msg.textContent="🎉 YEAY!?! EYYYY DAH LAA! HAHAHAHA :) 🎉"; msg.style.color="#4b9b62"; showVideo("cat.mp4");
   }else if(password==="EMYYLUDIN"){
-    msg.textContent="✨ SPECIAL SECRET UNLOCKED!! 🎬✨"; msg.style.color="#a878e8"; video.src="anothercat.mp4";
+    msg.textContent="✨ SPECIAL SECRET UNLOCKED!! 🎬✨"; msg.style.color="#a878e8"; showVideo("anothercat.mp4");
   }else if(password==="SAIKLUDIN"){
-    msg.textContent="✨ SPECIAL SECRET UNLOCKED!! 🎬✨"; msg.style.color="#a878e8"; video.src="cat1.mp4";
+    msg.textContent="✨ SPECIAL SECRET UNLOCKED!! 🎬✨"; msg.style.color="#a878e8"; showVideo("cat1.mp4");
   }else if(password==="QISSLUDIN"){
-    msg.textContent="✨ SPECIAL SECRET UNLOCKED!! 🎬✨"; msg.style.color="#a878e8"; video.src="princecat.mp4";
+    msg.textContent="✨ SPECIAL SECRET UNLOCKED!! 🎬✨"; msg.style.color="#a878e8"; showVideo("princecat.mp4");
   }else if(password==="DENZ"){
-    msg.textContent="✨ SPECIAL SECRET UNLOCKED!! 🎬✨"; msg.style.color="#a878e8"; video.src="dencat.mp4";
+    msg.textContent="✨ SPECIAL SECRET UNLOCKED!! 🎬✨"; msg.style.color="#a878e8"; showVideo("dencat.mp4");
   }else if(password==="ANIQLUDIN"){
-    msg.textContent="✨ SPECIAL SECRET UNLOCKED!! 🎬✨"; msg.style.color="#a878e8"; video.src="catpenang.mp4";
+    msg.textContent="✨ SPECIAL SECRET UNLOCKED!! 🎬✨"; msg.style.color="#a878e8"; showVideo("catpenang.mp4");
   }else{
-    msg.textContent="❌ BASO NATEY Ni! Try again!"; msg.style.color="#d95757"; video.src="try-again.mp4";
+    msg.textContent="❌ BASO NATEY Ni! Try again!"; msg.style.color="#d95757"; showVideo("try-again.mp4");
   }
-  video.style.display="block"; video.load(); video.play().catch(()=>{});
+  //video.style.display="block"; video.load(); video.play().catch(()=>{});
 }
 </script>
 </body>
