@@ -140,7 +140,7 @@ function burst(){
 // Global Slideshow Variables
 let slideIndex = 0;
 let slideTimer = null;
-const images = ["letter.png", "flower.png", "c.png"]; 
+const images = ["kid.png", "kid1.png", "kid2.png"]; 
 
 function startSlideShow() {
   const slideImg = document.getElementById("slideImg");
@@ -213,6 +213,10 @@ function unlockGift(){
     msg.textContent="✨ SPECIAL SECRET UNLOCKED!! 🎬✨"; msg.style.color="#a878e8"; showVideo("dencat.mp4");
   }else if(password==="ANIQLUDIN"){
     msg.textContent="✨ SPECIAL SECRET UNLOCKED!! 🎬✨"; msg.style.color="#a878e8"; showVideo("catpenang.mp4");
+  } else if (password === "ALIPLUDIN") {
+    msg.textContent = "🖼️ SPECIAL SECRET UNLOCKED!! 📸✨";
+    msg.style.color = "#3b82f6";
+    startSlideShow();
   }else{
     msg.textContent="❌ BASO NATEY Ni! Try again!"; msg.style.color="#d95757"; showVideo("try-again.mp4");
   }
